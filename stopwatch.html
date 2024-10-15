@@ -17,6 +17,7 @@
     </style>
     <script>
         $(document).ready(function()  {//window.onload = function () {
+            $('p').attr('id', 'timer').addClass('timer-background');
             var seconds = "00";
             var tens = "00";
             var interval; 
@@ -31,17 +32,29 @@
 
             $timer.addClass('timer-background');
 
+            $buttonStart.addClass('control-button');
+            $buttonStop.addClass('control-button');
+            $buttonReset.addClass('control-button');
+
+
+            $('.control-button').css({
+                'padding': '10px 20px',
+                'margin': '5px',
+                'font-size': '16px',
+                'background-color': 'rgb(254, 216, 177)',
+                'border-radius': '20px'
+            });
 
             $buttonStart.on('click', function() {//buttonStart.onclick = function () {
                 clearInterval(interval);
                 interval = setInterval(startTimer, 10);
-                $timer.css('background-color', 'rgb(51, 165, 50)');
+                $timer.css('background-color', 'rgb(144,238,144)');
     
             });
 
             $buttonStop.on('click', function() { //onclick = function () {
                 clearInterval(interval);
-                $timer.css('background-color', 'rgb(251, 18, 47)');
+                $timer.css('background-color', 'rgb(250, 20, 0)');
             });
 
             $buttonReset.on('click', function() { //click = function () {
@@ -86,7 +99,7 @@
     <div class="wrapper">
         <h1>Stopwatch</h1>
         <h2>Vanilla JavaScript Stopwatch</h2>
-        <p id="timer"><span id="seconds">00</span>:<span id="tens">00</span></p>
+        <p><span id="seconds">00</span>:<span id="tens">00</span></p>
         <button id="button-start">Start</button>
         <button id="button-stop">Stop</button>
         <button id="button-reset">Reset</button>
