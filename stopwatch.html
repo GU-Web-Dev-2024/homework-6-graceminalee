@@ -10,7 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HW6 - JQuery</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> <!--copied from JQuery browser, jquery adds additional functions to use in code-->
-    
+    <style>
+        .timer-background {
+            background-color: grey;
+        }
+    </style>
     <script>
         $(document).ready(function()  {//window.onload = function () {
             var seconds = "00";
@@ -23,7 +27,7 @@
             var $buttonStart = $('#button-start');
             var $buttonStop = $('#button-stop');
             var $buttonReset = $('#button-reset');
-            var $timer = $('#p');
+            var $timer = $('#timer');
 
             $timer.addClass('timer-background');
 
@@ -31,18 +35,22 @@
             $buttonStart.on('click', function() {//buttonStart.onclick = function () {
                 clearInterval(interval);
                 interval = setInterval(startTimer, 10);
+                $timer.css('background-color', 'rgb(51, 165, 50)');
+    
             });
 
             $buttonStop.on('click', function() { //onclick = function () {
                 clearInterval(interval);
+                $timer.css('background-color', 'rgb(251, 18, 47)');
             });
 
-            buttonReset.on('click', function() { //click = function () {
+            $buttonReset.on('click', function() { //click = function () {
                 clearInterval(interval);
                 tens = "00";
                 seconds = "00";
                 $appendTens.html(tens);
                 $appendSeconds.html(seconds);
+                $timer.css('background-color', 'grey');
             });
 
             function startTimer() {
@@ -78,7 +86,7 @@
     <div class="wrapper">
         <h1>Stopwatch</h1>
         <h2>Vanilla JavaScript Stopwatch</h2>
-        <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+        <p id="timer"><span id="seconds">00</span>:<span id="tens">00</span></p>
         <button id="button-start">Start</button>
         <button id="button-stop">Stop</button>
         <button id="button-reset">Reset</button>
