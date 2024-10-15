@@ -11,17 +11,18 @@
     <title>HW6 - JQuery</title>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> <!--copied from JQuery browser, jquery adds additional functions to use in code-->
     <style>
-        .timer-background {
+        .timer-background 
+        {
             background-color: grey;
         }
     </style>
     <script>
-        $(document).ready(function()  {//window.onload = function () {
+        $(document).ready(function() //window.onload = function () { 
+        {
             $('p').attr('id', 'timer').addClass('timer-background');
             var seconds = "00";
             var tens = "00";
             var interval; 
-
 
             var $appendTens = $('#tens');
             var $appendSeconds = $('#seconds');
@@ -37,7 +38,8 @@
             $buttonReset.addClass('control-button');
 
 
-            $('.control-button').css({
+            $('.control-button').css
+            ({
                 'padding': '10px 20px',
                 'margin': '5px',
                 'font-size': '16px',
@@ -45,52 +47,84 @@
                 'border-radius': '20px'
             });
 
-            $buttonStart.on('click', function() {//buttonStart.onclick = function () {
+            $buttonStart.on('click', function() //buttonStart.onclick = function () {
+            {
                 clearInterval(interval);
                 interval = setInterval(startTimer, 10);
                 $timer.css('background-color', 'rgb(144,238,144)');
+                startOpacityAnimation();
     
             });
 
-            $buttonStop.on('click', function() { //onclick = function () {
+            $buttonStop.on('click', function() //onclick = function () {
+            { 
                 clearInterval(interval);
                 $timer.css('background-color', 'rgb(250, 20, 0)');
+                resetOpacity();
             });
 
-            $buttonReset.on('click', function() { //click = function () {
+            $buttonReset.on('click', function() //click = function () {
+            { 
                 clearInterval(interval);
                 tens = "00";
                 seconds = "00";
                 $appendTens.html(tens);
                 $appendSeconds.html(seconds);
                 $timer.css('background-color', 'grey');
+                resetOpacity();
             });
 
-            function startTimer() {
+            function startTimer() 
+            {
                 tens++;
 
                 if (tens < 9) {
                     $appendTens.html("0", tens);
                 }
-
                 if (tens > 9) {
                     $appendTens.html(tens);
 
                 }
-
-                if (tens > 99) {
+                if (tens > 99) 
+                {
                     console.log("seconds");
                     seconds++;
-                    $appendSeconds.html(seconds < 10 ? "0" + seconds : seconds); // Format second
-                    //$appendSeconds.html("0", seconds);
+                    $appendSeconds.html(seconds < 10 ? "0" + seconds : seconds); // second
                     tens = 0;
                     $appendTens.html("00");
                 }
-
-                if (seconds > 9) {
+                if (seconds > 9) 
+                {
                     $appendSeconds.html(seconds);
                 }
             }
+
+            // Step 7
+            function startOpacityAnimation()
+            {
+                opacity = 1.0;
+                opacityInterval = setInterval(function()
+                {
+                    if (opacity >= 1)
+                    {
+                        opacity = 0.8;
+                    }
+                    else 
+                    {
+                        opacity += 0.4;
+                    }
+                    $timer.css('opacity', opacity);
+                }, 375);
+            }
+
+            function resetOpacity() 
+            {
+                $timer.css('opacity', 1.0);
+
+            }
+
+
+
         });
     </script>
 </head>
