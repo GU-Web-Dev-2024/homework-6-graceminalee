@@ -15,6 +15,14 @@
         {
             background-color: grey;
         }
+        .timer-image 
+        {
+            width: 100%;
+            height: auto;
+            position: abosolute;
+            top: 0;
+            left: 0;
+        }
     </style>
     <script>
         $(document).ready(function() //window.onload = function () { 
@@ -38,6 +46,35 @@
             $buttonStop.addClass('control-button');
             $buttonReset.addClass('control-button');
 
+            $('.wrapper').wrap(`<div class="timer-wrapper"></div>`);
+
+
+    
+            // Style wrapper and image
+            $('.timer-wrapper').css({
+                'background-image': 'url("https://clipart-library.com/2023/Halloween_Moon_PNG_Clip_Art_Image.png")',
+                'background-size': 'contain',
+                'background-repeat': 'no-repeat',
+                'background-position': 'center',
+                'position': 'relative',
+                'width': '100%',
+                'height': '100vh', 
+                'display': 'flex',
+                'align-items': 'center',
+                'justify-content': 'center'
+            });
+
+            // Style image
+            $('.timer-image').css({
+                'width': '100%',
+                'height': 'auto',
+                'position': 'absolute', 
+                'top': '0',
+                'left': '0',
+                'z-index': '0' // Image to back
+            });
+
+            $('control-button').addClass('control-button');
 
             $('.control-button').css
             ({
@@ -45,9 +82,22 @@
                 'margin': '5px',
                 'font-size': '16px',
                 'background-color': 'rgb(254, 216, 177)',
-                'border-radius': '20px'
+                'border-radius': '10px'
             });
 
+            // Style timer and buttons
+            $('.timer-background').css({
+                'position': 'relative', // Top of the image
+                'z-index': '1', // Front of the image
+                'padding': '20px',
+                'border': '2px solid black',
+                'background-color': 'rgba(255, 255, 255, 0.5)', // Little transparent background
+                'border-radius': '15px', // Round corners
+                'text-align': 'center',
+                'font-family': 'Arial, sans-serif'
+                
+            });
+           
             $buttonStart.on('click', function() //buttonStart.onclick = function () {
             {
                 clearInterval(interval);
@@ -74,7 +124,7 @@
                 $appendSeconds.html(seconds);
                 running = false;
                 resetOpacity();
-                $timer.css('background-color', 'grey');
+                $timer.css('background-color', 'rgb(125, 125, 125)');
             });
 
             function startTimer() 
@@ -121,7 +171,6 @@
             }
 
             
-
             function resetOpacity() 
             {
                 $timer.css('opacity', 1.0);
@@ -136,8 +185,7 @@
 
 <body>
     <div class="wrapper">
-        <h1>Stopwatch</h1>
-        <h2>Vanilla JavaScript Stopwatch</h2>
+        <h1>JQuery Stopwatch</h1>
         <p><span id="seconds">00</span>:<span id="tens">00</span></p>
         <button id="button-start">Start</button>
         <button id="button-stop">Stop</button>
